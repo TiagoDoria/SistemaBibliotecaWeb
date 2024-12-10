@@ -1,0 +1,6 @@
+::ng-deep p-menubar {
+    opacity: 0.85;
+
+    position: relative; /* Certifique-se de que o z-index funcione */
+    z-index: 999; 
+}
