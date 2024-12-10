@@ -1,5 +1,5 @@
-import { BirthDateVO } from "./BirthDateVO";
-import { NameVO } from "./NameVO";
+import { BirthDateVO } from "./BirthDateVO.vo";
+import { NameVO } from "./NameVO.vo";
 
 export interface Author {
     id: string;               

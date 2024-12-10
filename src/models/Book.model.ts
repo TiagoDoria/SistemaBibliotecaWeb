@@ -1,7 +1,7 @@
 import { Author } from "./Author.model";
 import { Genre } from "./Genre.model";
-import { NameVO } from "./NameVO";
-import { ReleaseDateVO } from "./ReleaseDateVO";
+import { NameVO } from "./NameVO.vo";
+import { ReleaseDateVO } from "./ReleaseDateVO.vo";
 
 export interface Livro {
     id: string; 
