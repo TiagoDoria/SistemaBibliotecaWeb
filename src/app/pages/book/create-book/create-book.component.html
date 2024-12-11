@@ -17,6 +17,19 @@
       <div class="p-field">
         <p-button label="Cadastrar" type="submit" icon="pi pi-check"></p-button>
       </div>
+      <div class="p-field">
+        <label for="author">Autor</label>
+        <p-dropdown 
+          id="author" 
+          [options]="authors" 
+          [(ngModel)]="formData.authorId" 
+          optionLabel="name" 
+          optionValue="id" 
+          name="author" 
+          placeholder="Selecione um autor" 
+          required>
+        </p-dropdown>
+      </div>
     </form>
   </p-panel>
   
