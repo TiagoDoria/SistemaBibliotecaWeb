@@ -8,9 +8,11 @@ import { ViewBookComponent } from './pages/book/view-book/view-book.component';
 import { CreateGenreComponent } from './pages/genre/create-genre/create-genre.component';
 import { ViewGenreComponent } from './pages/genre/view-genre/view-genre.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
     { path:'', component: LoginComponent },
+    { path: 'registrar', component: RegisterComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'autor/criar', component: CreateAuthorComponent },
     { path: 'autor/listar', component: ViewAuthorComponent },

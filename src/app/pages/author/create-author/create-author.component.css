@@ -1,0 +1,22 @@
+.card {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  p-panel {
+    width: 100%;
+  }
+  
+  .p-fluid .p-field {
+    margin-bottom: 1rem;
+  }
+  

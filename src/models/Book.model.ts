@@ -3,7 +3,7 @@ import { Genre } from "./Genre.model";
 import { NameVO } from "./NameVO.vo";
 import { ReleaseDateVO } from "./ReleaseDateVO.vo";
 
-export interface Livro {
+export interface Book {
     id: string; 
     name: NameVO; 
     releaseDate: ReleaseDateVO; 

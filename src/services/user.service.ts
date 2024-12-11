@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User.model';
 import { LoginDTO } from '../models/Login.dto'; 
+import { LoginResponse } from '../models/LoginResponse.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UsuarioService {
     return this.http.post<User>(this.apiUrl + '/register', usuario);
   }
 
-  getLogin(login : LoginDTO): Observable<boolean> {
-    return this.http.post<boolean>(this.apiUrl + '/login', login);
+  getLogin(login : LoginDTO): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.apiUrl + '/login', login);
   }
 }

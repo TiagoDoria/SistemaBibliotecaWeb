@@ -1,1 +1,44 @@
-<p>register works!</p>
+<!-- cadastro-generico.component.html -->
+<div class="cadastro-container">
+    <div class="cadastro-panel">
+        <p-card>
+            <h1 style="text-align: center;">Cadastrar</h1>
+            <div class="form-grid-container">
+                <!-- Campo para o email -->
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input 
+                        pInputText 
+                        id="email" 
+                        [(ngModel)]="formData.email" 
+                        placeholder="Digite o email"/>
+                </div>
+
+                <!-- Campo para o nome -->
+                <div class="form-field">
+                    <label for="name">Nome</label>
+                    <input 
+                        pInputText 
+                        id="name" 
+                        [(ngModel)]="formData.name" 
+                        placeholder="Digite o nome"/>
+                </div>
+
+                <!-- Campo para a senha -->
+                <div class="form-field">
+                    <label for="password">Senha</label>
+                    <p-password 
+                        id="password" 
+                        [(ngModel)]="formData.password" 
+                        placeholder="Digite a senha">
+                    </p-password>
+                </div>
+
+                <!-- Botão de salvar -->
+                <div class="form-field form-button">
+                    <button pButton type="button" label="Salvar" (click)="onSave()"></button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>

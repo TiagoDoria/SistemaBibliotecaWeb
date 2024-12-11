@@ -1,1 +1,22 @@
-<p>create-book works!</p>
+<p-panel header="Cadastro de Livro" class="card">
+    <form (ngSubmit)="onSubmit()" class="p-fluid">
+  
+      <!-- Nome -->
+      <div class="p-field">
+        <label for="name">Nome</label>
+        <p-inputText id="name" [(ngModel)]="formData.name.value" name="name" required></p-inputText>
+      </div>
+  
+      <!-- Data de Nascimento -->
+      <div class="p-field">
+        <label for="birthDate">Data de Lançamento</label>
+        <p-calendar id="birthDate" [(ngModel)]="formData.releaseDate.value" name="birthDate" dateFormat="yy-mm-dd" required></p-calendar>
+      </div>
+  
+      <!-- Botão Cadastrar -->
+      <div class="p-field">
+        <p-button label="Cadastrar" type="submit" icon="pi pi-check"></p-button>
+      </div>
+    </form>
+  </p-panel>
+  
