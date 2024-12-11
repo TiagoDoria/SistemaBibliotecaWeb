@@ -18,4 +18,13 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.apiUrl}/BuscarTodosLivrosAsync`);
   }
+
+  deleteBook(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/DeletarLivroAsync/${id}`);
+  }
+
+  // Método para atualizar livro
+  updateBook(book: any): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}/AtualizarLivroAsync`, book);
+  }
 }

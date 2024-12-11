@@ -18,4 +18,13 @@ export class AuthorService {
   getAuthors(): Observable<Author[]> {
     return this.http.get<Author[]>(`${this.apiUrl}/BuscarTodosAutoresAsync`);
   }
+
+  deleteAuthor(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/DeletarAutorAsync/${id}`);
+  }
+
+  // Método para atualizar autor
+  updateAuthor(author: Author): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}/AtualizarAutorAsync`, author);
+  }
 }

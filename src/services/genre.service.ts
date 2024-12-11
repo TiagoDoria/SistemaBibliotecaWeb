@@ -18,4 +18,12 @@ export class GenreService {
   getGenres(): Observable<Genre[]> {
     return this.http.get<Genre[]>(`${this.apiUrl}/BuscarTodosGenerosAsync`);
   }
+
+  deleteGenre(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/DeletarGeneroAsync/${id}`);
+  }
+
+  updateGenre(genre: any): Observable<boolean> {
+    return this.http.put<boolean>(`${this.apiUrl}/AtualizarGeneroAsync`, genre);
+  }
 }
