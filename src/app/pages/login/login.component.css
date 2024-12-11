@@ -1,0 +1,31 @@
+:host{
+    display: block;
+    min-height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.content{
+    margin:2rem;
+}
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Horizontal center */
+    align-items: center;     /* Vertical center */
+    height: 100vh;
+    width: 100%;
+}
+.btn-login{
+    margin-top: 1rem;
+}
+
+::ng-deep .btn-login button {
+    background-color: rgb(3, 17, 80);
+    border: rgb(3, 17, 80);
+}
+
+.register-btn{
+    display: flex;
+    flex-direction: column;
+}

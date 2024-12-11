@@ -27,20 +27,20 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-plus-circle',
         items : [
             {
-              label: 'Clientes',
+              label: 'Autor',
               icon: 'pi pi-user',
-              routerLink:'/cliente/criar'
+              routerLink:'/autor/criar'
             },
             {
-              label: 'Equipamento',
+              label: 'Livro',
               icon: 'pi pi-mobile',
-              routerLink : '/equipamento/criar'
+              routerLink : '/livro/criar'
             },
-            // {
-            //   label: 'Lote',
-            //   icon: 'pi pi-objects-column',
-            //   routerLink :'/lote'
-            // }
+            {
+              label: 'Gênero',
+              icon: 'pi pi-mobile',
+              routerLink : '/genero/criar'
+            }
         ]
       },
       {
@@ -48,20 +48,20 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-search',
         items : [
             {
-              label: 'Clientes',
+              label: 'Autor',
               icon: 'pi pi-user',
-              routerLink:'/cliente/listar'
+              routerLink:'/autor/listar'
             },
             {
-              label: 'Equipamento',
+              label: 'Livro',
               icon: 'pi pi-mobile',
-              routerLink : '/equipamento/listar'
+              routerLink : '/livro/listar'
             },
             {
-              label: 'Lote',
-              icon: 'pi pi-objects-column',
-              routerLink :'/lote'
-            }
+              label: 'Gênero',
+              icon: 'pi pi-mobile',
+              routerLink : '/genero/listar'
+            },
         ]
       },
       {

@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .main-container {
+    display: flex;
+    height: 100vh; /* Ocupa 100% da altura da viewport */
+  }
+  
+  app-menubar {
+    height: 100%; /* Ocupa 100% da altura disponível */
+    flex: 0 0 250px; /* Ajuste a largura do menubar conforme necessário */
+    overflow: auto; /* Adiciona rolagem se necessário */
+  }
+  
+  .dashboard-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  :host{
+    display: block;
+    min-height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
