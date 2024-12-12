@@ -1,4 +1,4 @@
-<p-table [value]="books" [paginator]="true" [rows]="10" [responsive]="true">
+<p-table *ngIf="books && books.length > 0" [value]="books" [paginator]="true" [rows]="10" [responsive]="true">
     <ng-template pTemplate="header">
       <tr>
         <th>Nome</th>
@@ -16,8 +16,8 @@
     <ng-template pTemplate="body" let-livro>
       <tr>
         <td>{{ livro.nome.value }}</td>
-        <td>{{ livro.author.nome }}</td>
-        <td>{{ livro.genre.nome }}</td>
+        <td>{{ livro.autorLivro.nome.value }}</td>
+        <td>{{ livro.genero.nome.value }}</td>
          <!-- Exemplo de ação, como Editar ou Excluir -->
          <td (click)="updateLivro(livro)">
           <a href="javascript:void(0)">

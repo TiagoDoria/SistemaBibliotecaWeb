@@ -1,4 +1,4 @@
-<p-table [value]="genres" [paginator]="true" [rows]="10" [responsive]="true">
+<p-table *ngIf="genres && genres.length > 0" [value]="genres" [paginator]="true" [rows]="10" [responsive]="true">
     <ng-template pTemplate="header">
       <tr>
         <th>Nome</th>

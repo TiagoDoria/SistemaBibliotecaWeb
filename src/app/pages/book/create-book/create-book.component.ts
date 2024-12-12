@@ -50,7 +50,6 @@ export class CreateBookComponent {
     this.authorService.getAuthors().subscribe(
       (response: ResponseDTO) => {
         this.authors = response.result;
-        console.log(this.authors);
       },
       (error) => {
         console.error('Erro ao carregar autores:', error);

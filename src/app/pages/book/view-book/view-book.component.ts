@@ -26,7 +26,8 @@ export class ViewBookComponent implements OnInit  {
   loadBooks() {
     this.bookService.getBooks().subscribe(
       (response : ResponseDTO) => {
-        this.books = response.result; // Atribui a lista de autores
+        this.books =  response.result?.$values; // Atribui a lista de livros
+        console.log(this.books)
       },
       (error) => {
         console.error('Erro ao carregar livros:', error);

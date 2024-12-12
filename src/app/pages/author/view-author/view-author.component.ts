@@ -27,7 +27,7 @@ export class ViewAuthorComponent implements OnInit {
   loadAuthors() {
     this.authorService.getAuthors().subscribe(
       (response : ResponseDTO) => {
-        this.authors = response.result;
+        this.authors =  response.result?.$values;
         console.log( this.authors);
       },
       (error) => {

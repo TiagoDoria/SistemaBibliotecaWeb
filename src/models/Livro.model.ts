@@ -9,7 +9,7 @@ export interface Livro {
     nome: NomeVO; 
     dataLancamento: DataLancamentoVO; 
     autorId: string; 
-    autor?: Autor;
+    autorLivro?: Autor;
     generoId?: string; 
     genero?: Genero; 
 }

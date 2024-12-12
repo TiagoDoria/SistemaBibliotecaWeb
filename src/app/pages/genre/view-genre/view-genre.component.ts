@@ -26,7 +26,8 @@ export class ViewGenreComponent implements OnInit {
   loadGenres() {
     this.genreService.getGenres().subscribe(
       (response : ResponseDTO) => {
-        this.genres = response.result; // Atribui a lista de autores
+        this.genres =  response.result?.$values; // Atribui a lista de autores
+        console.log(this.genres)
       },
       (error) => {
         console.error('Erro ao carregar gêneros:', error);
