@@ -28,4 +28,9 @@ export class BookService {
   updateBook(book: Livro): Observable<ResponseDTO> {
     return this.http.put<ResponseDTO>(this.apiUrl, book);
   }
+
+  getBookById(id: string): Observable<ResponseDTO> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<ResponseDTO>(url);
+  }
 }

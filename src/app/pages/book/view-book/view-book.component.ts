@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Livro } from '../../../../models/Livro.model';
 import { BookService } from '../../../../services/book.service';
 import { ResponseDTO } from '../../../../models/ResponseDTO';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { ResponseDTO } from '../../../../models/ResponseDTO';
 export class ViewBookComponent implements OnInit  {
   books: Livro[] = [];
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadBooks();
@@ -26,7 +27,9 @@ export class ViewBookComponent implements OnInit  {
   loadBooks() {
     this.bookService.getBooks().subscribe(
       (response : ResponseDTO) => {
-        this.books =  response.result?.$values; // Atribui a lista de livros
+        this.books = JSON.parse(JSON.stringify(response.result?.$values || []));
+
+
         console.log(this.books)
       },
       (error) => {
@@ -47,19 +50,10 @@ export class ViewBookComponent implements OnInit  {
     );
   }
 
-  updateLivro(livro: Livro) {
-    this.bookService.updateBook(livro).subscribe(
-      (success) => {
-        if (success) {
-          // Handle successful update, e.g., update the author in the list
-          // ...
-        } else {
-          console.error('Error updating livro');
-        }
-      },
-      (error) => {
-        console.error('Error updating author:', error);
-      }
-    );
+  
+
+  updateLivro(livro: Livro): void {
+    // Navega para o componente de edição, passando o id do autor na URL
+    this.router.navigate([`/livro/atualizar/${livro.id}`]);
   }
 }

@@ -4,6 +4,7 @@ import { AuthorService } from '../../../../services/author.service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ResponseDTO } from '../../../../models/ResponseDTO';
+import { Router } from '@angular/router';
 
 
 
@@ -17,7 +18,7 @@ import { ResponseDTO } from '../../../../models/ResponseDTO';
 export class ViewAuthorComponent implements OnInit {
   authors: Autor[] = [];
 
-  constructor(private authorService: AuthorService) { }
+  constructor(private authorService: AuthorService,  private router: Router) { }
 
   ngOnInit(): void {
     this.loadAuthors();
@@ -48,20 +49,10 @@ export class ViewAuthorComponent implements OnInit {
     );
   }
 
-  updateAuthor(author: Autor) {
-    this.authorService.updateAuthor(author).subscribe(
-      (success) => {
-        if (success) {
-          // Handle successful update, e.g., update the author in the list
-          // ...
-        } else {
-          console.error('Error updating author');
-        }
-      },
-      (error) => {
-        console.error('Error updating author:', error);
-      }
-    );
+  updateAuthor(autor: Autor): void {
+    // Navega para o componente de edição, passando o id do autor na URL
+    this.router.navigate([`/autor/atualizar/${autor.id}`]);
+
   }
 
 }

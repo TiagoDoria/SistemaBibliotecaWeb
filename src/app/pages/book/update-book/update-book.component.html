@@ -1,0 +1,53 @@
+<p-panel header="Cadastro de Livro" class="card">
+    <form (ngSubmit)="updateBook()" class="p-fluid">
+  
+      <div class="p-field">
+        <label>Nome</label>
+        <input
+          pInputText 
+          [(ngModel)]="formData.nome.value"
+          name="nomeLivro"
+          />
+      </div>
+  
+      <!-- Data de Nascimento -->
+      <div class="p-field">
+        <label for="dataLancamento">Data de Lançamento</label>
+        <p-calendar id="dataLancamento" [(ngModel)]="formData.dataLancamento.value" name="dataLancamento" dateFormat="yy-mm-dd" required></p-calendar>
+      </div>
+  
+      <div class="p-field">
+        <label for="author">Autor</label>
+        <p-dropdown 
+          id="author" 
+          [options]="authors" 
+          [(ngModel)]="formData.autorId" 
+          optionLabel="nome.value" 
+          optionValue="id" 
+          name="author" 
+          placeholder="Selecione um autor" 
+          required>
+        </p-dropdown>
+      </div>
+
+      <div class="p-field">
+        <label for="genero">Gênero</label>
+        <p-dropdown 
+          id="genero" 
+          [options]="genres" 
+          [(ngModel)]="formData.generoId" 
+          optionLabel="nome.value" 
+          optionValue="id" 
+          name="genero" 
+          placeholder="Selecione um gênero" 
+          required>
+        </p-dropdown>
+      </div>
+      <br />
+       <!-- Botão Cadastrar -->
+       <div class="p-field">
+        <p-button label="Cadastrar" type="submit" icon="pi pi-check"></p-button>
+      </div>
+    </form>
+  </p-panel>
+  

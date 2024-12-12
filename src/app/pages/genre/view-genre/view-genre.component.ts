@@ -4,6 +4,7 @@ import { GenreService } from '../../../../services/genre.service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ResponseDTO } from '../../../../models/ResponseDTO';
+import { Router } from '@angular/router';
 
 
 
@@ -17,7 +18,7 @@ import { ResponseDTO } from '../../../../models/ResponseDTO';
 export class ViewGenreComponent implements OnInit {
   genres: Genero[] = [];
 
-  constructor(private genreService: GenreService) { }
+  constructor(private genreService: GenreService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadGenres();
@@ -47,20 +48,9 @@ export class ViewGenreComponent implements OnInit {
     );
   }
 
-  updateGenero(genero: Genero) {
-    this.genreService.updateGenre(genero).subscribe(
-      (success) => {
-        if (success) {
-          // Handle successful update, e.g., update the author in the list
-          // ...
-        } else {
-          console.error('Error updating genero');
-        }
-      },
-      (error) => {
-        console.error('Error updating author:', error);
-      }
-    );
-  }
-
+    updateGenero(genero: Genero): void {
+      // Navega para o componente de edição, passando o id do genero na URL
+      this.router.navigate([`/genero/atualizar/${genero.id}`]);
+  
+    }
 }

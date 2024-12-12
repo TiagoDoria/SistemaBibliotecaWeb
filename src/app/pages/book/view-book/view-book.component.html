@@ -15,9 +15,9 @@
   
     <ng-template pTemplate="body" let-livro>
       <tr>
-        <td>{{ livro.nome.value }}</td>
-        <td>{{ livro.autorLivro.nome.value }}</td>
-        <td>{{ livro.genero.nome.value }}</td>
+        <td>{{ livro?.nome?.value }}</td>
+        <td>{{ livro?.autorLivro?.nome?.value }}</td>
+        <td>{{ livro?.genero?.nome?.value }}</td>
          <!-- Exemplo de ação, como Editar ou Excluir -->
          <td (click)="updateLivro(livro)">
           <a href="javascript:void(0)">

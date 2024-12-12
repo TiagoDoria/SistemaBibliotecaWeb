@@ -27,4 +27,9 @@ export class GenreService {
   updateGenre(genre: any): Observable<ResponseDTO> {
     return this.http.put<ResponseDTO>(this.apiUrl, genre);
   }
+
+  getGenreById(id: string): Observable<ResponseDTO> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<ResponseDTO>(url);
+  }
 }

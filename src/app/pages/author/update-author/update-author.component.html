@@ -1,0 +1,30 @@
+<p-panel header="Cadastro de Autor" class="card">
+    <form (ngSubmit)="updateAuthor()" class="p-fluid">
+    
+      <!-- Nome -->
+      <div class="p-field">
+        <label>Nome</label>
+        <input
+          pInputText 
+          [(ngModel)]="formData.nome.value"
+          name="nomeAutor"
+          />
+      </div>
+    
+      <!-- Data de Nascimento -->
+      <div class="p-field">
+        <label for="nascimento">Data de Nascimento</label>
+        <p-calendar
+          id="nascimento"
+          [(ngModel)]="formData.nascimento.value"
+          name="nascimento"
+          dateFormat="yy-mm-dd"
+        ></p-calendar>
+      </div>
+    
+      <div class="p-field">
+        <p-button label="Enviar" type="submit"></p-button>
+      </div>
+    </form>
+  </p-panel>
+  

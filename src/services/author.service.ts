@@ -28,4 +28,9 @@ export class AuthorService {
   updateAuthor(author: Autor): Observable<ResponseDTO> {
     return this.http.put<ResponseDTO>(this.apiUrl, author);
   }
+
+  getAuthorById(id: string): Observable<ResponseDTO> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<ResponseDTO>(url);
+  }
 }

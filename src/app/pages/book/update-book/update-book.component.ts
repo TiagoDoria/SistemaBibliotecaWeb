@@ -1,11 +1,11 @@
-import { Component , Input} from '@angular/core';
+import { Component , Input, OnInit} from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Importando o CommonModule
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Livro } from '../../../../models/Livro.model';
 import { Autor } from '../../../../models/Autor.model';
 import { AuthorService } from '../../../../services/author.service';
@@ -19,29 +19,49 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { v4 as uuidv4 } from 'uuid';
 import { BookService } from '../../../../services/book.service';
 
-
 @Component({
-  selector: 'app-create-book',
+  selector: 'app-update-book',
   standalone: true,
   imports: [InputTextModule, FormsModule, PanelModule, ButtonModule, CardModule, CommonModule, CalendarModule, DropdownModule, InputNumberModule],
-  templateUrl: './create-book.component.html',
-  styleUrl: './create-book.component.css'
+  templateUrl: './update-book.component.html',
+  styleUrl: './update-book.component.css'
 })
-export class CreateBookComponent {
+export class UpdateBookComponent implements OnInit {
   formData: Livro = {
-    id: uuidv4(),
+    id: '',
     nome: { value: '' },
     dataLancamento: { value: '' },
     autorId: '',
     generoId: ''
   };
 
+  livroSend: Livro = {
+    id: '',
+    nome: { value: '' },
+    dataLancamento: { value: '' },
+    autorId: '',
+    generoId: ''
+  };
+
+
   authors: Autor[] = []; // Lista de autores para o dropdown
-  genres: Genero[] = [];
+  genres: Genero[] = []; // Lista de autores para o dropdown
 
-  constructor ( private bookService: BookService, private authorService: AuthorService, private genreService: GenreService, private router: Router) { }
 
+  constructor(
+    private route: ActivatedRoute,
+    private bookService: BookService,
+    private genreService: GenreService,
+    private authorService: AuthorService,
+    private router: Router
+  ) {}
+
+  
   ngOnInit(): void {
+    const authorId = this.route.snapshot.paramMap.get('id');
+    if (authorId) {
+      this.getBook(authorId);
+    }
     this.loadAuthors(); // Carregar autores ao inicializar o componente
     this.loadGenres();
   }
@@ -57,7 +77,6 @@ export class CreateBookComponent {
     );
   }
 
-
   loadGenres() {
     this.genreService.getGenres().subscribe(
       (response : ResponseDTO) => {
@@ -69,20 +88,28 @@ export class CreateBookComponent {
     );
   }
 
-  onSubmit() {
-    if (this.formData.nome.value && this.formData.dataLancamento.value) {
-      this.bookService.createBook(this.formData).subscribe(
-        (response) => {
-          console.log('Autor criado com sucesso:', response);
-          this.router.navigate(['/livro/listar']);
-        },
-        (error) => {
-          console.error('Erro ao criar livro:', error);
-          // Lógica para tratar o erro (exibir uma mensagem ao usuário, por exemplo)
-        }
-      );
-    } else {
-      console.log('Preencha todos os campos');
-    }
+  getBook(id: string): void {
+    this.bookService.getBookById(id).subscribe((data) => {
+      this.formData = data.result;
+    });
   }
+
+  updateBook(): void {
+    this.livroSend.id = this.formData.id;
+    this.livroSend.nome = { value: this.formData.nome.value };
+    this.livroSend.dataLancamento = { value: this.formData.dataLancamento.value };
+    this.livroSend.autorId = this.formData.autorId;
+    this.livroSend.generoId = this.formData.generoId;
+    console.log(this.livroSend);
+    this.bookService.updateBook(this.livroSend).subscribe(
+      (response) => {
+        console.log('Livro atualizado com sucesso!', response);
+        this.router.navigate(['/livro/listar']);  // Redireciona para a lista de autores
+      },
+      (error) => {
+        console.error('Erro ao atualizar o livro', error);
+      }
+    );
+  }
+
 }
