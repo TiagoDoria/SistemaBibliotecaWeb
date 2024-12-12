@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Genre } from '../models/Genre.model';
+import { Genero } from '../models/Genero.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,12 @@ export class GenreService {
   private apiUrl = 'https://localhost:7088/api/genero';
   constructor(private http: HttpClient) { }
 
-  createGenre(genre : Genre): Observable<boolean> {
+  createGenre(genre : Genero): Observable<boolean> {
     return this.http.post<boolean>(this.apiUrl + '/CriarGeneroAsync', genre);
   }
 
-  getGenres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(`${this.apiUrl}/BuscarTodosGenerosAsync`);
+  getGenres(): Observable<Genero[]> {
+    return this.http.get<Genero[]>(`${this.apiUrl}/BuscarTodosGenerosAsync`);
   }
 
   deleteGenre(id: string): Observable<void> {

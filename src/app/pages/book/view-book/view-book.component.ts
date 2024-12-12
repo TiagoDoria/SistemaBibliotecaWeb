@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
-import { Genre } from '../../../../models/Genre.model';
-import { Book } from '../../../../models/Book.model';
+import { Livro } from '../../../../models/Livro.model';
 import { BookService } from '../../../../services/book.service';
 
 
@@ -14,7 +13,7 @@ import { BookService } from '../../../../services/book.service';
   styleUrl: './view-book.component.css'
 })
 export class ViewBookComponent implements OnInit  {
-  books: Book[] = [];
+  books: Livro[] = [];
 
   constructor(private bookService: BookService) { }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Author } from '../../../../models/Author.model';
+import { Autor } from '../../../../models/Autor.model';
 import { AuthorService } from '../../../../services/author.service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
+import { ResponseDTO } from '../../../../models/ResponseDTO';
 
 
 
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './view-author.component.css'
 })
 export class ViewAuthorComponent implements OnInit {
-  authors: Author[] = [];
+  authors: Autor[] = [];
 
   constructor(private authorService: AuthorService) { }
 
@@ -25,11 +26,40 @@ export class ViewAuthorComponent implements OnInit {
   // Método para carregar os autores da API
   loadAuthors() {
     this.authorService.getAuthors().subscribe(
-      (response) => {
-        this.authors = response; // Atribui a lista de autores
+      (response : ResponseDTO) => {
+        this.authors = response.result;
+        console.log( this.authors);
       },
       (error) => {
         console.error('Erro ao carregar autores:', error);
+      }
+    );
+  }
+
+  deleteAuthor(authorId: string) {
+    this.authorService.deleteAuthor(authorId).subscribe(
+      () => {
+        // Handle successful deletion, e.g., remove the author from the list
+        this.authors = this.authors.filter(a => a.id !== authorId);
+      },
+      (error) => {
+        console.error('Error deleting author:', error);
+      }
+    );
+  }
+
+  updateAuthor(author: Autor) {
+    this.authorService.updateAuthor(author).subscribe(
+      (success) => {
+        if (success) {
+          // Handle successful update, e.g., update the author in the list
+          // ...
+        } else {
+          console.error('Error updating author');
+        }
+      },
+      (error) => {
+        console.error('Error updating author:', error);
       }
     );
   }

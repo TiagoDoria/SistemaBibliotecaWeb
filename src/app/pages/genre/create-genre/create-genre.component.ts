@@ -8,7 +8,7 @@ import { PanelModule } from 'primeng/panel';
 import { Router } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
 import { GenreService } from '../../../../services/genre.service';
-import { Genre } from '../../../../models/Genre.model';
+import { Genero } from '../../../../models/Genero.model';
 @Component({
   selector: 'app-create-genre',
   standalone: true,
@@ -17,13 +17,13 @@ import { Genre } from '../../../../models/Genre.model';
   styleUrl: './create-genre.component.css'
 })
 export class CreateGenreComponent {
-  genres: Genre[] = [];
-  formData: Genre = {} as Genre;
+  genres: Genero[] = [];
+  formData: Genero = {} as Genero;
 
   constructor(private genreService: GenreService, private router: Router) { }
 
   onSubmit() {
-    if (this.formData.name.value) {
+    if (this.formData.nome.value) {
       this.genreService.createGenre(this.formData).subscribe(
         (response) => {
           console.log('Gênero criado com sucesso:', response);

@@ -6,13 +6,14 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
 import { Router } from '@angular/router';
-import { Book } from '../../../../models/Book.model';
+import { Livro } from '../../../../models/Livro.model';
 import { BookService } from '../../../../services/book.service';
-import { Author } from '../../../../models/Author.model';
+import { Autor } from '../../../../models/Autor.model';
 import { AuthorService } from '../../../../services/author.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { GenreService } from '../../../../services/genre.service';
-import { Genre } from '../../../../models/Genre.model';
+import { Genero } from '../../../../models/Genero.model';
+import { ResponseDTO } from '../../../../models/ResponseDTO';
 
 @Component({
   selector: 'app-create-book',
@@ -22,9 +23,9 @@ import { Genre } from '../../../../models/Genre.model';
   styleUrl: './create-book.component.css'
 })
 export class CreateBookComponent {
-  formData: Book = {} as Book;
-  authors: Author[] = []; // Lista de autores para o dropdown
-  genres: Genre[] = [];
+  formData: Livro = {} as Livro;
+  authors: Autor[] = []; // Lista de autores para o dropdown
+  genres: Genero[] = [];
 
   constructor ( private bookService: BookService, private authorService: AuthorService, private genreService: GenreService, private router: Router) { }
 
@@ -34,8 +35,8 @@ export class CreateBookComponent {
 
   loadAuthors(): void {
     this.authorService.getAuthors().subscribe(
-      (response: Author[]) => {
-        this.authors = response;
+      (response: ResponseDTO) => {
+        this.authors = response.result;
       },
       (error) => {
         console.error('Erro ao carregar autores:', error);
@@ -55,7 +56,7 @@ export class CreateBookComponent {
   }
 
   onSubmit() {
-    if (this.formData.name.value && this.formData.releaseDate.value) {
+    if (this.formData.nome.value && this.formData.dataLancamento.value) {
       this.bookService.createBook(this.formData).subscribe(
         (response) => {
           console.log('Autor criado com sucesso:', response);

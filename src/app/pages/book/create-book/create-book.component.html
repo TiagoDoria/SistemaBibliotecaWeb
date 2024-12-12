@@ -4,13 +4,13 @@
       <!-- Nome -->
       <div class="p-field">
         <label for="name">Nome</label>
-        <p-inputText id="name" [(ngModel)]="formData.name.value" name="name" required></p-inputText>
+        <p-inputText id="nome" [(ngModel)]="formData.nome.value" name="nome" required></p-inputText>
       </div>
   
       <!-- Data de Nascimento -->
       <div class="p-field">
-        <label for="birthDate">Data de Lançamento</label>
-        <p-calendar id="birthDate" [(ngModel)]="formData.releaseDate.value" name="birthDate" dateFormat="yy-mm-dd" required></p-calendar>
+        <label for="dataLancamento">Data de Lançamento</label>
+        <p-calendar id="dataLancamento" [(ngModel)]="formData.dataLancamento.value" name="dataLancamento" dateFormat="yy-mm-dd" required></p-calendar>
       </div>
   
       <!-- Botão Cadastrar -->
@@ -22,7 +22,7 @@
         <p-dropdown 
           id="author" 
           [options]="authors" 
-          [(ngModel)]="formData.authorId" 
+          [(ngModel)]="formData.autorId" 
           optionLabel="name" 
           optionValue="id" 
           name="author" 

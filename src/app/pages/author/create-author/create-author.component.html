@@ -1,22 +1,29 @@
 <p-panel header="Cadastro de Autor" class="card">
-    <form (ngSubmit)="onSubmit()" class="p-fluid">
+  <form (ngSubmit)="onSubmit()" class="p-fluid">
   
-      <!-- Nome -->
-      <div class="p-field">
-        <label for="name">Nome</label>
-        <p-inputText id="name" [(ngModel)]="formData.name.value" name="name" required></p-inputText>
-      </div>
+    <!-- Nome -->
+    <div class="p-field">
+      <label>Nome</label>
+      <input
+        pInputText 
+        [(ngModel)]="formData.nome.value"
+        name="nomeAutor"
+        />
+    </div>
   
-      <!-- Data de Nascimento -->
-      <div class="p-field">
-        <label for="birthDate">Data de Nascimento</label>
-        <p-calendar id="birthDate" [(ngModel)]="formData.birthDate.value" name="birthDate" dateFormat="yy-mm-dd" required></p-calendar>
-      </div>
+    <!-- Data de Nascimento -->
+    <div class="p-field">
+      <label for="nascimento">Data de Nascimento</label>
+      <p-calendar
+        id="nascimento"
+        [(ngModel)]="formData.nascimento.value"
+        name="nascimento"
+        dateFormat="yy-mm-dd"
+      ></p-calendar>
+    </div>
   
-      <!-- Botão Cadastrar -->
-      <div class="p-field">
-        <p-button label="Cadastrar" type="submit" icon="pi pi-check"></p-button>
-      </div>
-    </form>
-  </p-panel>
-  
+    <div class="p-field">
+      <p-button label="Enviar" type="submit"></p-button>
+    </div>
+  </form>
+</p-panel>

@@ -1,30 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Author } from '../models/Author.model';
+import { Autor } from '../models/Autor.model';
+import { ResponseDTO } from '../models/ResponseDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthorService {
-  private apiUrl = 'https://localhost:7088/api/autor';
+  private apiUrl = 'https://localhost:7074/Autor';
   constructor(private http: HttpClient) { }
 
-  createAuthor(author : Author): Observable<boolean> {
-    return this.http.post<boolean>(this.apiUrl + '/CriarAutorAsync', author);
+  createAuthor(author : Autor): Observable<ResponseDTO> {
+    console.log(author)
+    return this.http.post<ResponseDTO>(this.apiUrl , author);
   }
 
-  getAuthors(): Observable<Author[]> {
-    return this.http.get<Author[]>(`${this.apiUrl}/BuscarTodosAutoresAsync`);
+  getAuthors(): Observable<ResponseDTO> {
+    return this.http.get<ResponseDTO>(this.apiUrl);
   }
 
   deleteAuthor(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/DeletarAutorAsync/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
   // Método para atualizar autor
-  updateAuthor(author: Author): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}/AtualizarAutorAsync`, author);
+  updateAuthor(author: Autor): Observable<ResponseDTO> {
+    return this.http.put<ResponseDTO>(this.apiUrl, author);
   }
 }

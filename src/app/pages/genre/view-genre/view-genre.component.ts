@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Genre } from '../../../../models/Genre.model';
+import { Genero } from '../../../../models/Genero.model';
 import { GenreService } from '../../../../services/genre.service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './view-genre.component.css'
 })
 export class ViewGenreComponent implements OnInit {
-  genres: Genre[] = [];
+  genres: Genero[] = [];
 
   constructor(private genreService: GenreService) { }
 
