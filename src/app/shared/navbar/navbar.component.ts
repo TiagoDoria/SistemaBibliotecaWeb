@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { CommunicationService } from '../../../services/CommunicationService';
+import { UsuarioService } from '../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,7 @@ import { CommunicationService } from '../../../services/CommunicationService';
 export class NavbarComponent implements OnInit {
   items: MenuItem[] = []; // Inicialize como um array vazio
 
-  constructor(private communicationService: CommunicationService) {}
+  constructor(private communicationService: CommunicationService, private usuarioService: UsuarioService, private router: Router) {}
 
   ngOnInit() {
     this.items = [
@@ -67,9 +69,14 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Sair',
         icon: 'pi pi-sign-out',
-        routerLink: '/'  // Navegação para Login
+        command: () => this.logout()  // Navegação para Login
       }
     ];
+  }
+
+  logout(): void {
+    this.usuarioService.logout(); // Remove o token
+    this.router.navigate(['/']); // Redireciona para a página de login
   }
 
   onCreateClick() {

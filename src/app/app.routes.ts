@@ -9,16 +9,16 @@ import { CreateGenreComponent } from './pages/genre/create-genre/create-genre.co
 import { ViewGenreComponent } from './pages/genre/view-genre/view-genre.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path:'', component: LoginComponent },
     { path: 'registrar', component: RegisterComponent },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'autor/criar', component: CreateAuthorComponent },
-    { path: 'autor/listar', component: ViewAuthorComponent },
-    { path: 'livro/criar', component: CreateBookComponent },
-    { path: 'livro/listar', component: ViewBookComponent },
-    { path: 'genero/criar', component: CreateGenreComponent },
-    { path: 'genero/listar', component: ViewGenreComponent },
-    { path: '**', component: NotFoundComponent }
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'autor/criar', component: CreateAuthorComponent, canActivate: [AuthGuard] },
+    { path: 'autor/listar', component: ViewAuthorComponent, canActivate: [AuthGuard] },
+    { path: 'livro/criar', component: CreateBookComponent, canActivate: [AuthGuard] },
+    { path: 'livro/listar', component: ViewBookComponent, canActivate: [AuthGuard] },
+    { path: 'genero/criar', component: CreateGenreComponent, canActivate: [AuthGuard] },
+    { path: 'genero/listar', component: ViewGenreComponent, canActivate: [AuthGuard] },
 ];

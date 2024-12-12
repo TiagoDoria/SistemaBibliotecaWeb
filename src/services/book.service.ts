@@ -2,29 +2,30 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Livro } from '../models/Livro.model';
+import { ResponseDTO } from '../models/ResponseDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class BookService {
-  private apiUrl = 'https://localhost:7088/api/livro';
+  private apiUrl = 'https://localhost:7074/Livro';
   constructor(private http: HttpClient) { }
 
-  createBook(book : Livro): Observable<boolean> {
-    return this.http.post<boolean>(this.apiUrl + '/CriarLivroAsync', book);
+  createBook(book : Livro): Observable<ResponseDTO> {
+    return this.http.post<ResponseDTO>(this.apiUrl, book);
   }
 
-  getBooks(): Observable<Livro[]> {
-    return this.http.get<Livro[]>(`${this.apiUrl}/BuscarTodosLivrosAsync`);
+  getBooks(): Observable<ResponseDTO> {
+    return this.http.get<ResponseDTO>(this.apiUrl);
   }
 
-  deleteBook(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/DeletarLivroAsync/${id}`);
+  deleteBook(id: string): Observable<ResponseDTO> {
+    return this.http.delete<ResponseDTO>(`${this.apiUrl}/${id}`);
   }
 
   // Método para atualizar livro
-  updateBook(book: any): Observable<boolean> {
-    return this.http.put<boolean>(`${this.apiUrl}/AtualizarLivroAsync`, book);
+  updateBook(book: Livro): Observable<ResponseDTO> {
+    return this.http.put<ResponseDTO>(this.apiUrl, book);
   }
 }

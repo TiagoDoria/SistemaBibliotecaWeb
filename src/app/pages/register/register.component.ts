@@ -36,6 +36,7 @@ export class RegisterComponent {
 
   constructor ( private apiservice: UsuarioService, private router: Router) { }
   onSave() {
+    console.log(this.formData)
     this.apiservice.createUsuario( this.formData).subscribe(
       (response:User) => {
         console.log("Usuário cadastrado com sucesso!");

@@ -4,20 +4,32 @@
         <th>Nome</th>
         <th>Autor</th>
         <th>Gênero</th>
-        <th>Ações</th>
+        <th>
+          Editar
+        </th>
+        <th>
+          Excluir
+        </th>
       </tr>
     </ng-template>
   
-    <ng-template pTemplate="body" let-book>
+    <ng-template pTemplate="body" let-livro>
       <tr>
-        <td>{{ book.name.value }}</td>
-        <td>{{ book.author.name }}</td>
-        <td>{{ book.genre.name }}</td>
-        <td>
-          <!-- Exemplo de ação, como Editar ou Excluir -->
-          <button pButton icon="pi pi-pencil" label="Editar"></button>
-          <button pButton icon="pi pi-trash" label="Excluir" class="p-button-danger"></button>
+        <td>{{ livro.nome.value }}</td>
+        <td>{{ livro.author.nome }}</td>
+        <td>{{ livro.genre.nome }}</td>
+         <!-- Exemplo de ação, como Editar ou Excluir -->
+         <td (click)="updateLivro(livro)">
+          <a href="javascript:void(0)">
+            <i class="pi pi-pencil" style="color: #708090"></i>
+          </a>
         </td>
+        <td (click)="deleteLivro(livro.id)">
+          <a href="javascript:void(0)">
+            <i class="pi pi-trash" style="color: #7c2626"></i>
+          </a>
+        </td>
+       
       </tr>
     </ng-template>
 </p-table>

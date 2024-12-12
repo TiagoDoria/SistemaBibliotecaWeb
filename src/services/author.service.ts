@@ -13,7 +13,6 @@ export class AuthorService {
   constructor(private http: HttpClient) { }
 
   createAuthor(author : Autor): Observable<ResponseDTO> {
-    console.log(author)
     return this.http.post<ResponseDTO>(this.apiUrl , author);
   }
 
@@ -21,8 +20,8 @@ export class AuthorService {
     return this.http.get<ResponseDTO>(this.apiUrl);
   }
 
-  deleteAuthor(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteAuthor(id: string): Observable<ResponseDTO> {
+    return this.http.delete<ResponseDTO>(`${this.apiUrl}/${id}`);
   }
 
   // Método para atualizar autor

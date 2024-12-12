@@ -6,19 +6,26 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
 import { Router } from '@angular/router';
-import { DropdownModule } from 'primeng/dropdown';
 import { GenreService } from '../../../../services/genre.service';
 import { Genero } from '../../../../models/Genero.model';
+import { CalendarModule } from 'primeng/calendar';
+import { v4 as uuidv4 } from 'uuid';
+
 @Component({
   selector: 'app-create-genre',
   standalone: true,
-  imports: [CommonModule,CardModule,ButtonModule, PanelModule, FormsModule, DropdownModule],
+  imports: [InputTextModule, FormsModule, PanelModule, ButtonModule, CardModule, CommonModule, CalendarModule],
   templateUrl: './create-genre.component.html',
   styleUrl: './create-genre.component.css'
 })
 export class CreateGenreComponent {
   genres: Genero[] = [];
-  formData: Genero = {} as Genero;
+  formData: Genero = {
+    id: uuidv4(),
+    nome: { value: '' },
+    livros: []
+
+  };
 
   constructor(private genreService: GenreService, private router: Router) { }
 

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { User } from '../models/User.model';
 import { LoginDTO } from '../models/Login.dto'; 
-import { LoginResponse } from '../models/LoginResponse.dto';
+import { LoginResponse, ResponseDTO } from '../models/LoginResponse.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -19,22 +19,39 @@ export class UsuarioService {
     return this.http.post<User>(this.apiUrl + '/register', usuario);
   }
 
-  getLogin(loginData: LoginDTO): Observable<LoginResponse> {
+  getLogin(loginData: LoginDTO): Observable<ResponseDTO<LoginResponse>> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<LoginResponse>(this.apiUrl + '/login', loginData, { headers })
+  
+    return this.http.post<ResponseDTO<LoginResponse>>(this.apiUrl + '/login', loginData, { headers })
       .pipe(
-        tap(response => {
-          this.token = response.token;
-        })   
+        tap((response: ResponseDTO<LoginResponse>) => {
+          if (response && response.isSuccess && response.result?.token) {
+            console.log('Token recebido:', response.result.token);
+            this.setToken(response.result.token); // Armazena o token
+          } else {
+            console.error('Falha ao obter o token:', response);
+          }
+        })
       );
   }
 
-  setToken(token: string) {
-    this.token = token;
+  setToken(tok: string) {
+    localStorage.setItem('authToken', tok); // Salva no localStorage
   }
+  
 
   // Add a method to retrieve the token (if available)
-  getToken(): string | undefined {
-    return this.token;
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  // Método para verificar se o usuário está logado
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('authToken'); // Retorna true se o token existir
+  }
+
+  // Método para realizar logout
+  logout(): void {
+    localStorage.removeItem('authToken'); // Remove o token
   }
 }

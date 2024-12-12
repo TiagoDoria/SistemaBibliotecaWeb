@@ -10,6 +10,6 @@ export interface Livro {
     dataLancamento: DataLancamentoVO; 
     autorId: string; 
     autor?: Autor;
-    generoId: string; 
+    generoId?: string; 
     genero?: Genero; 
 }

@@ -1,12 +1,14 @@
 <p-panel header="Cadastro de Gênero" class="card">
     <form (ngSubmit)="onSubmit()" class="p-fluid">
   
-      <!-- Nome -->
       <div class="p-field">
-        <label for="name">Nome</label>
-        <p-inputText id="name" [(ngModel)]="formData.nome.value" name="name" required></p-inputText>
+        <label>Nome</label>
+        <input
+          pInputText 
+          [(ngModel)]="formData.nome.value"
+          name="nomeGenero"
+          />
       </div>
-  
       <!-- Botão Cadastrar -->
       <div class="p-field">
         <p-button label="Cadastrar" type="submit" icon="pi pi-check"></p-button>

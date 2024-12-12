@@ -12,17 +12,17 @@
       <tr>
         <td>{{ autor.nome.value }}</td>
         <td>{{ autor.nascimento.value | date: 'dd/MM/yyyy' }}</td>
-          <!-- Exemplo de ação, como Editar ou Excluir -->
-          <td (click)="updateAuthor(autor)">
-            <a href="javascript:void(0)">
-              <i class="pi pi-pencil" style="color: #708090"></i>
-            </a>
-          </td>
-          <td (click)="deleteAuthor(autor.id)">
-            <a href="javascript:void(0)">
-              <i class="pi pi-trash" style="color: #7c2626"></i>
-            </a>
-          </td>
+        <!-- Exemplo de ação, como Editar ou Excluir -->
+        <td (click)="updateAuthor(autor)">
+          <a href="javascript:void(0)">
+            <i class="pi pi-pencil" style="color: #708090"></i>
+          </a>
+        </td>
+        <td (click)="deleteAuthor(autor.id)">
+          <a href="javascript:void(0)">
+            <i class="pi pi-trash" style="color: #7c2626"></i>
+          </a>
+        </td>
       </tr>
     </ng-template>
   </p-table>

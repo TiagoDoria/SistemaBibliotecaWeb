@@ -15,7 +15,7 @@ import { UsuarioService } from '../../../services/user.service';
 import { LoginDTO } from '../../../models/Login.dto';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { HttpBackend, HttpClient } from '@angular/common/http';
-import { LoginResponse } from '../../../models/LoginResponse.dto';
+import { LoginResponse, ResponseDTO } from '../../../models/LoginResponse.dto';
 
 
 @Component({
@@ -52,8 +52,9 @@ export class LoginComponent {
       //Verifica se is campos foram preenchidos
     if (this.usuario.userName && this.usuario.password) {
       this.usuarioService.getLogin(this.usuario).subscribe(
-        (response : LoginResponse) => {
-          if (response.token != "") //se for true ele redireciona
+        (response : ResponseDTO<LoginResponse>) => {
+          console.log(response);
+          if (response.result.token != "") //se for true ele redireciona
           this.router.navigate(['/dashboard']);
         else
         //alert ("Erro ao Logar");

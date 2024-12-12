@@ -2,18 +2,26 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Nome</th>
-        <th>Ações</th>
+        <th>Editar</th>
+        <th>Excluir</th>
       </tr>
     </ng-template>
   
-    <ng-template pTemplate="body" let-genre>
+    <ng-template pTemplate="body" let-genero>
       <tr>
-        <td>{{ genre.name.value }}</td>
-        <td>
-          <!-- Exemplo de ação, como Editar ou Excluir -->
-          <button pButton icon="pi pi-pencil" label="Editar"></button>
-          <button pButton icon="pi pi-trash" label="Excluir" class="p-button-danger"></button>
+        <td>{{ genero.nome.value }}</td>
+         <!-- Exemplo de ação, como Editar ou Excluir -->
+         <td (click)="updateGenero(genero)">
+          <a href="javascript:void(0)">
+            <i class="pi pi-pencil" style="color: #708090"></i>
+          </a>
         </td>
+        <td (click)="deleteGenero(genero.id)">
+          <a href="javascript:void(0)">
+            <i class="pi pi-trash" style="color: #7c2626"></i>
+          </a>
+        </td>
+       
       </tr>
     </ng-template>
 </p-table>
